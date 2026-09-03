@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scripts Comerciais — Gaafer Chocolates | V4 Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0505;
+    --bg-card: #140808;
+    --bg-card-2: #1a0909;
+    --red: #e51e25;
+    --red-deep: #4a0000;
+    --red-line: rgba(229,30,37,.35);
+    --white: #f3eeec;
+    --gray: #a79e9b;
+    --gray-dim: #6f6663;
+    --green: #34c76b;
+    --radius: 22px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--white);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    line-height:1.05;
+  }
+  .accent{color:var(--red);}
+  .wrap{max-width:1040px; margin:0 auto; padding:0 32px;}
+  a{color:inherit;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    padding:90px 0 70px;
+    background:
+      radial-gradient(ellipse 900px 420px at 50% -10%, rgba(229,30,37,.35), transparent 65%),
+      var(--bg);
+    border-bottom:1px solid var(--red-line);
+  }
+  .hero::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:3px;
+    background:linear-gradient(90deg, transparent, var(--red), transparent);
+  }
+  .eyebrow{color:var(--gray); font-size:15px; margin-bottom:18px;}
+  .eyebrow b{color:var(--white);}
+  .hero h1{font-size:56px; margin-bottom:10px;}
+  .hero .sub{
+    font-size:26px; color:var(--red); font-family:'Anton', sans-serif;
+    text-transform:uppercase; margin-bottom:28px;
+  }
+  .hero p.lede{max-width:640px; font-size:17px; color:var(--gray);}
+  .hero .meta{display:flex; gap:36px; margin-top:36px; flex-wrap:wrap;}
+  .hero .meta div{font-size:13px; color:var(--gray-dim);}
+  .hero .meta div b{display:block; color:var(--white); font-size:15px; margin-bottom:2px;}
+
+  /* ---------- NAV ---------- */
+  .tocnav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,5,5,.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--red-line);
+  }
+  .tocnav .wrap{display:flex; gap:6px; overflow-x:auto; padding:14px 32px; scrollbar-width:none;}
+  .tocnav .wrap::-webkit-scrollbar{display:none;}
+  .tocnav a{
+    flex:0 0 auto; display:flex; flex-direction:column; align-items:center; gap:6px;
+    font-size:11px; letter-spacing:.4px; color:var(--gray-dim);
+    text-decoration:none; padding:6px 14px; border-bottom:2px solid transparent; white-space:nowrap;
+  }
+  .tocnav a .n{
+    width:26px; height:26px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--bg-card); color:var(--gray-dim);
+    font-family:'Anton', sans-serif; font-size:12px;
+  }
+  .tocnav a:hover{color:var(--white);}
+  .tocnav a:hover .n{background:var(--red-deep); color:var(--white);}
+
+  /* ---------- SECTIONS ---------- */
+  section.doc{padding:76px 0; border-bottom:1px solid rgba(255,255,255,.06);}
+  section.doc:nth-of-type(even){
+    background:linear-gradient(180deg, transparent, rgba(229,30,37,.035), transparent);
+  }
+  .secnum{
+    font-family:'Anton', sans-serif; font-size:64px; color:var(--red);
+    line-height:1; margin-bottom:8px; opacity:.9;
+  }
+  section.doc h2{font-size:34px; margin-bottom:18px;}
+  .rule{height:1px; width:100%; background:linear-gradient(90deg, var(--red), transparent 70%); margin:18px 0 34px;}
+  section.doc > .wrap > p.intro{color:var(--gray); max-width:680px; font-size:16px; margin-bottom:36px;}
+  h3.h{
+    font-family:'Inter',sans-serif; font-weight:800; font-size:19px;
+    text-transform:none; letter-spacing:0; margin:34px 0 14px; color:var(--white);
+  }
+  h3.h .tag{
+    display:inline-block; background:var(--red-deep); color:var(--red);
+    font-size:11px; font-weight:700; letter-spacing:.5px; text-transform:uppercase;
+    padding:3px 9px; border-radius:6px; margin-right:10px; vertical-align:middle;
+  }
+
+  /* ---------- SPEECH BLOCK (roteiro de ligação) ---------- */
+  .speech{
+    background:var(--bg-card);
+    border-left:3px solid var(--red);
+    border-radius:0 14px 14px 0;
+    padding:16px 22px;
+    margin:14px 0 22px;
+    font-size:15px;
+    color:#e8e0dd;
+    font-style:italic;
+  }
+  .speech .cue{
+    display:block; font-style:normal; font-size:11px; letter-spacing:.5px;
+    text-transform:uppercase; color:var(--red); margin-bottom:8px; font-weight:700;
+  }
+
+  table.doc-table{width:100%; border-collapse:collapse; margin:18px 0 8px; font-size:14.5px;}
+  table.doc-table th{
+    text-align:left; color:var(--red); font-size:12px; letter-spacing:.4px;
+    text-transform:uppercase; padding:10px 14px; border-bottom:1px solid var(--red-line);
+  }
+  table.doc-table td{
+    padding:13px 14px; border-bottom:1px solid rgba(255,255,255,.06);
+    color:#ded6d3; vertical-align:top;
+  }
+  table.doc-table tr:hover td{background:rgba(229,30,37,.045);}
+
+  @media(max-width:720px){
+    .hero h1{font-size:38px;}
+    .secnum{font-size:46px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Elaborado por <b>V4 Company</b> &nbsp;·&nbsp; Cliente <b>Gaafer Chocolates</b></div>
+    <h1>Scripts Comerciais</h1>
+    <div class="sub">Expansão de Franquias Gaafer</div>
+    <p class="lede">Roteiro de ligação, scripts de mensagens, fluxo de follow-up e mapa de pontos de contato — material operacional para SDR e Closer aplicarem desde o primeiro dia.</p>
+    <div class="meta">
+      <div><b>Uso</b>SDR &amp; Closer</div>
+      <div><b>Complementar a</b>Estrutura Comercial</div>
+      <div><b>Tom</b>Consultivo &amp; Transparente</div>
+    </div>
+  </div>
+</header>
+
+<nav class="tocnav">
+  <div class="wrap">
+    <a href="#s1"><span class="n">01</span>Ligação</a>
+    <a href="#s2"><span class="n">02</span>Mensagens</a>
+    <a href="#s3"><span class="n">03</span>Follow-up</a>
+    <a href="#s4"><span class="n">04</span>Contatos</a>
+  </div>
+</nav>
+
+<main>
+<section class="doc" id="s1">
+  <div class="wrap">
+    <div class="secnum">01</div>
+    <h2>Roteiro de <span class="accent">Ligação</span></h2>
+    <div class="rule"></div>
+    <p class="intro">Cold call / primeiro contato telefônico — do gancho de abertura ao agendamento da reunião comercial.</p>
+
+    <h3 class="h"><span class="tag">0–30s</span>Abertura</h3>
+    <div class="speech">
+      <span class="cue">SDR fala</span>
+      "Oi, [Nome]! Aqui é [seu nome] da Gaafer Chocolates. Tudo bem? Vi que você demonstrou interesse em conhecer nosso modelo de franquia [ou: "que você já é nosso cliente/consumidor e ficou interessado em abrir um negócio com a gente"]. Você tem 3-5 minutinhos agora para eu entender um pouco melhor o seu momento e ver se faz sentido a gente avançar numa conversa mais completa?"
+    </div>
+    <p style="font-size:13.5px; color:var(--gray-dim);">Se disser "não posso agora": agendar horário específico ("Perfeito, qual o melhor horário pra te ligar de novo? Amanhã de manhã ou à tarde?")</p>
+
+    <h3 class="h"><span class="tag">30–60s</span>Contexto sobre a marca <span style="font-weight:400; text-transform:none; color:var(--gray-dim); font-size:13px;">(só se o lead ainda não conhece)</span></h3>
+    <div class="speech">
+      <span class="cue">SDR fala</span>
+      "Só pra te contextualizar rapidinho: a Gaafer é uma franqueadora de chocolates com 7 anos de mercado, já são 20 unidades ativas. A gente trabalha com chocolates de verdade, sem gordura hidrogenada, com receitas autorais que têm muito a ver com o Brasil — chocolate com erva-mate, com frutas vermelhas, entre outros. É um produto bem diferente do que você vê nas grandes redes."
+    </div>
+
+    <h3 class="h"><span class="tag">Qualificação</span>Perguntas (nessa ordem)</h3>
+    <div class="speech">
+      <span class="cue">1 · Capital de investimento</span>
+      "Hoje você já tem o valor de investimento separado, ou ainda tá se organizando pra isso? Só pra te situar, o investimento total fica entre R$ 210 mil e R$ 260 mil, dependendo do modelo."
+    </div>
+    <div class="speech">
+      <span class="cue">2 · Cidade</span>
+      "E você pensa em abrir em qual cidade? Você mora lá ou seria uma cidade nova pra você?"
+    </div>
+    <div class="speech">
+      <span class="cue">3 · Envolvimento operacional — pergunta mais importante</span>
+      "Me conta um pouco: você pensa em tocar o negócio no dia a dia, ou a ideia é ter alguém de confiança super próximo cuidando da operação com você?"
+    </div>
+    <p style="font-size:13.5px; color:var(--gray-dim); margin-top:-14px; margin-bottom:22px;">⚠ Sinal de alerta: se a resposta for "não, seria só um investimento, eu não vou me envolver" → lead de risco, seguir para tratamento de objeção abaixo.</p>
+    <div class="speech">
+      <span class="cue">4 · Motivação</span>
+      "E o que te chamou atenção na Gaafer especificamente? Você já é cliente, conhece alguém que é franqueado, ou chegou até a gente de outro jeito?"
+    </div>
+
+    <h3 class="h"><span class="tag">Fechamento</span>Agendamento da reunião</h3>
+    <div class="speech">
+      <span class="cue">SDR fala</span>
+      "[Nome], baseado no que você me contou, faz total sentido a gente conversar com mais profundidade — aí eu já te apresento os números completos, o payback, como funciona o suporte da franqueadora do ponto até a inauguração. Você prefere terça ou quinta essa semana? De manhã ou à tarde?"
+    </div>
+    <p style="font-size:13.5px; color:var(--gray-dim);">Confirmar: canal da reunião (vídeo/presencial) e e-mail/WhatsApp para envio do convite.</p>
+
+    <h3 class="h"><span class="tag">Objeções</span>Tratamento das mais comuns</h3>
+    <table class="doc-table">
+      <tr><th>Objeção</th><th>Resposta sugerida</th></tr>
+      <tr><td>"Eu não teria tempo pra tocar o dia a dia, seria mais um investimento"</td><td>"Entendo. Só é importante eu ser transparente: nosso modelo funciona muito melhor quando tem alguém envolvido de perto na operação — a gente já teve experiências onde isso não aconteceu e não performou bem. Você teria alguém de confiança, tipo um sócio, pra estar à frente?" <i>(se não → lead não qualificado nesse momento)</i></td></tr>
+      <tr><td>"Não conheço muito a marca ainda"</td><td>"Sem problema! Posso te mandar um pouco mais de material agora e a gente marca uma conversa mais completa quando fizer sentido pra você, sem compromisso."</td></tr>
+      <tr><td>"Achei o investimento alto"</td><td>"Entendo a preocupação. Na conversa completa a gente mostra o detalhamento — taxa de franquia, estrutura, estoque — e o payback estimado (24 a 33 meses dependendo do modelo)."</td></tr>
+      <tr><td>"Prefiro só receber informações por e-mail/WhatsApp"</td><td>"Consigo te mandar um resumo, sim! Mas recomendo muito a gente marcar uma conversa rápida depois, porque tem bastante nuance no modelo que fica mais claro batendo um papo — combinado?"</td></tr>
+    </table>
+  </div>
+</section>
+<style>
+  .msg-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:12px;}
+  .msg-card{
+    background:var(--bg-card);
+    border:1px solid var(--red-line);
+    border-radius:18px;
+    overflow:hidden;
+  }
+  .msg-head{
+    display:flex; align-items:center; gap:10px;
+    padding:12px 18px;
+    background:linear-gradient(135deg, var(--red-deep), transparent);
+    border-bottom:1px solid var(--red-line);
+  }
+  .msg-head .dot{width:8px; height:8px; border-radius:50%; background:var(--red);}
+  .msg-head b{font-size:13px; letter-spacing:.2px;}
+  .msg-head span{font-size:11px; color:var(--gray-dim); margin-left:auto; text-transform:uppercase; letter-spacing:.4px;}
+  .bubble{
+    margin:16px 18px;
+    background:#1d1010;
+    border:1px solid rgba(229,30,37,.18);
+    border-radius:14px 14px 14px 3px;
+    padding:14px 16px;
+    font-size:14px;
+    color:#e8e0dd;
+    white-space:pre-line;
+  }
+  @media(max-width:820px){ .msg-grid{grid-template-columns:1fr;} }
+</style>
+
+<section class="doc" id="s2">
+  <div class="wrap">
+    <div class="secnum">02</div>
+    <h2>Scripts de <span class="accent">Mensagens</span></h2>
+    <div class="rule"></div>
+    <p class="intro">Templates de WhatsApp e e-mail para cada momento da jornada — prontos para copiar e adaptar.</p>
+
+    <div class="msg-grid">
+
+      <div class="msg-card">
+        <div class="msg-head"><div class="dot"></div><b>Primeiro contato</b><span>WhatsApp · até 1h</span></div>
+        <div class="bubble">Oi, [Nome]! Tudo bem? Aqui é [seu nome], da Gaafer Chocolates 🍫
+Vi que você se interessou em conhecer nossa oportunidade de franquia! Que ótimo!
+Posso te ligar rapidinho hoje ainda pra entender melhor seu momento e já tirar suas primeiras dúvidas? Qual o melhor horário?</div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-head"><div class="dot"></div><b>Primeiro contato</b><span>E-mail (alternativo)</span></div>
+        <div class="bubble">Assunto: Gaafer Chocolates — vamos conversar sobre sua franquia?
+
+Olá, [Nome],
+Que bom que você quer conhecer mais sobre a oportunidade de ser um franqueado Gaafer! Somos uma franqueadora de chocolates com 7 anos de mercado e 20 unidades ativas.
+Gostaria de agendar uma conversa rápida essa semana?
+
+Abraço, [Seu nome] — Gaafer Chocolates</div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-head"><div class="dot"></div><b>Ex-consumidor</b><span>WhatsApp · base de e-mail/CRM</span></div>
+        <div class="bubble">Oi, [Nome]! Aqui é [seu nome], da Gaafer Chocolates 🍫
+Vi que você já é nosso cliente e queria te contar uma novidade: estamos abrindo novas oportunidades de franquia em algumas cidades, e pensei em você porque sei que curte muito nossos produtos!
+Topa bater um papo de 5 minutinhos? Sem compromisso nenhum 😊</div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-head"><div class="dot"></div><b>Confirmação de reunião</b><span>WhatsApp · 1 dia antes</span></div>
+        <div class="bubble">Oi, [Nome]! Passando só pra confirmar nossa conversa amanhã às [horário] sobre a franquia Gaafer 😊
+Vai ser por [Google Meet/WhatsApp/presencial] — te mando o link/endereço aqui mais perto do horário.
+Alguma dúvida que já queira me adiantar?</div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-head"><div class="dot"></div><b>Follow-up pós-reunião</b><span>WhatsApp · mesmo dia</span></div>
+        <div class="bubble">Oi, [Nome]! Foi ótimo falar com você hoje 😊
+Como combinamos, segue em anexo o material com os números completos (investimento, payback, suporte da franqueadora).
+Fico à disposição pra qualquer dúvida! Quando faz sentido a gente conversar de novo pra fechar os próximos passos?</div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-head"><div class="dot"></div><b>Reativação</b><span>WhatsApp · 5-7 dias sem resposta</span></div>
+        <div class="bubble">Oi, [Nome]! Tudo bem? Fiquei aqui pensando em você e no papo que tivemos sobre a franquia Gaafer.
+Sei que decisão de negócio não é da noite pro dia — queria só saber se ainda faz sentido pra você, ou se rolou alguma dúvida que eu possa ajudar a esclarecer?</div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-head"><div class="dot"></div><b>Reativação final</b><span>WhatsApp · ~15-20 dias</span></div>
+        <div class="bubble">Oi, [Nome]! Não quero ser inconveniente 😊 Só queria deixar aberto o convite: se em algum momento fizer sentido reabrir essa conversa sobre a franquia Gaafer, é só me chamar por aqui.
+Um abraço e sucesso nos seus projetos!</div>
+      </div>
+
+      <div class="msg-card">
+        <div class="msg-head"><div class="dot"></div><b>Desqualificação educada</b><span>WhatsApp · perfil sem fit</span></div>
+        <div class="bubble">Oi, [Nome]! Muito obrigado pelo interesse na Gaafer 😊
+Pelo que conversamos, hoje nosso modelo funciona melhor com franqueados com envolvimento direto na operação do dia a dia — e entendi que esse não é exatamente o seu momento agora, certo?
+Fica o convite aberto pro futuro!</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<section class="doc" id="s3">
+  <div class="wrap">
+    <div class="secnum">03</div>
+    <h2>Fluxo de <span class="accent">Follow-up</span></h2>
+    <div class="rule"></div>
+    <p class="intro">Benchmark de mercado: leads respondidos em até 5 minutos convertem até 21x mais que os respondidos após 30 minutos — velocidade é a alavanca mais importante desta cadência.</p>
+
+    <h3 class="h"><span class="tag">Cadência</span>Lead novo (pós-captação)</h3>
+    <table class="doc-table">
+      <tr><th>Dia</th><th>Ação</th><th>Canal</th></tr>
+      <tr><td>Dia 0 (até 1h)</td><td>1º contato — apresentação + tentativa de agendamento</td><td>WhatsApp / Ligação</td></tr>
+      <tr><td>Dia 0 (+3h, se sem resposta)</td><td>Ligação direta</td><td>Telefone</td></tr>
+      <tr><td>Dia 1</td><td>Mensagem de reforço, oferecendo material</td><td>WhatsApp</td></tr>
+      <tr><td>Dia 3</td><td>Ligação</td><td>Telefone</td></tr>
+      <tr><td>Dia 5–7</td><td>Mensagem de reativação</td><td>WhatsApp</td></tr>
+      <tr><td>Dia 10</td><td>Ligação final de tentativa</td><td>Telefone</td></tr>
+      <tr><td>Dia 15–20</td><td>Mensagem de reativação final</td><td>WhatsApp</td></tr>
+      <tr><td>Após dia 20</td><td>Move para "lead frio" — entra em fluxo de nutrição de longo prazo</td><td>E-mail (campanha)</td></tr>
+    </table>
+    <p style="font-size:13.5px; color:var(--gray-dim); margin-top:10px;">Regra de ouro: mínimo de 5 tentativas de contato em múltiplos canais antes de considerar o lead frio.</p>
+
+    <h3 class="h"><span class="tag">Cadência</span>Pós-reunião de apresentação (Closer)</h3>
+    <table class="doc-table">
+      <tr><th>Dia</th><th>Ação</th></tr>
+      <tr><td>Mesmo dia</td><td>Envio do material completo + agradecimento</td></tr>
+      <tr><td>+2 dias</td><td>Follow-up perguntando se surgiram dúvidas</td></tr>
+      <tr><td>+5 dias</td><td>Ligação para entender status da decisão</td></tr>
+      <tr><td>+10 dias</td><td>Mensagem oferecendo nova conversa ou esclarecimento</td></tr>
+      <tr><td>+15–20 dias</td><td>Avaliar acompanhamento longo ou desqualificação</td></tr>
+    </table>
+
+    <h3 class="h"><span class="tag">Cadência</span>Lead em decisão (aguardando aprovação interna/financiamento)</h3>
+    <p style="font-size:14.5px; color:#e8e0dd; max-width:680px;">Manter contato quinzenal, sem pressão — esses leads têm ciclo mais longo (decisão de investimento de R$ 200+ mil não é rápida). Focar em ser fonte de informação, não em "empurrar" fechamento.</p>
+  </div>
+</section>
+
+<style>
+  .journey{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin:24px 0 8px;
+  }
+  .journey-step{
+    background:linear-gradient(160deg, var(--red-deep), var(--bg-card) 60%);
+    border:1px solid var(--red-line);
+    border-radius:16px;
+    padding:18px 16px;
+  }
+  .journey-step .jlabel{
+    font-family:'Anton',sans-serif; color:var(--red); font-size:14px;
+    letter-spacing:.4px; margin-bottom:10px;
+  }
+  .journey-step ul{list-style:none; font-size:12.8px; color:#e8e0dd;}
+  .journey-step ul li{padding-left:12px; position:relative; margin-bottom:6px;}
+  .journey-step ul li::before{content:"•"; position:absolute; left:0; color:var(--red);}
+  .journey-step .resp{
+    margin-top:12px; font-size:11px; color:var(--gray-dim);
+    text-transform:uppercase; letter-spacing:.3px;
+  }
+  .journey-arrow{
+    display:flex; align-items:center; justify-content:center;
+    color:var(--red); font-size:20px;
+  }
+  @media(max-width:820px){ .journey{grid-template-columns:1fr;} .journey-arrow{display:none;} }
+</style>
+
+<section class="doc" id="s4">
+  <div class="wrap">
+    <div class="secnum">04</div>
+    <h2>Mapa de <span class="accent">Pontos de Contato</span></h2>
+    <div class="rule"></div>
+    <p class="intro">A jornada completa do franqueado Gaafer, da descoberta à implantação.</p>
+
+    <div class="journey">
+      <div class="journey-step">
+        <div class="jlabel">Descoberta</div>
+        <ul>
+          <li>Anúncio Meta/Google</li>
+          <li>Instagram do Gabriel</li>
+          <li>Indicação de franqueados</li>
+          <li>Consumidor da base de e-mail</li>
+        </ul>
+        <div class="resp">Marketing (V4)</div>
+      </div>
+      <div class="journey-step">
+        <div class="jlabel">Consideração</div>
+        <ul>
+          <li>Ligação/WhatsApp de qualificação</li>
+          <li>Reunião de apresentação</li>
+        </ul>
+        <div class="resp">SDR + Closer</div>
+      </div>
+      <div class="journey-step">
+        <div class="jlabel">Decisão</div>
+        <ul>
+          <li>Proposta formal</li>
+          <li>Envio de material completo</li>
+          <li>Follow-ups estruturados</li>
+        </ul>
+        <div class="resp">Closer + Sayonara</div>
+      </div>
+      <div class="journey-step">
+        <div class="jlabel">Implantação</div>
+        <ul>
+          <li>Entrevista final com gestores</li>
+          <li>Assinatura da COF</li>
+          <li>Busca de ponto + mentoria</li>
+          <li>Abertura da loja</li>
+        </ul>
+        <div class="resp">Sayonara (CS)</div>
+      </div>
+    </div>
+
+    <h3 class="h"><span class="tag">Detalhamento</span>Ponto de contato por objetivo</h3>
+    <table class="doc-table">
+      <tr><th>Ponto de contato</th><th>Canal</th><th>Responsável</th><th>Objetivo</th></tr>
+      <tr><td>Anúncio (Meta/Google)</td><td>Digital</td><td>V4 (mídia)</td><td>Gerar lead qualificado via LP</td></tr>
+      <tr><td>Instagram do Gabriel</td><td>Digital/orgânico</td><td>V4 + Gabriel</td><td>Gerar confiança, atrair rede de contatos</td></tr>
+      <tr><td>Indicação de franqueados</td><td>Boca a boca</td><td>Sayonara</td><td>Lead de alta conversão, baixo custo</td></tr>
+      <tr><td>Base de clientes (e-mail)</td><td>E-mail marketing</td><td>V4 + Gaafer</td><td>Reativar consumidores como potenciais franqueados</td></tr>
+      <tr><td>1º contato</td><td>WhatsApp/ligação</td><td>SDR</td><td>Qualificação inicial (MQL→SQL)</td></tr>
+      <tr><td>Reunião de apresentação</td><td>Vídeo/presencial</td><td>Closer</td><td>Apresentar modelo de negócio completo</td></tr>
+      <tr><td>Envio de material/proposta</td><td>E-mail/WhatsApp</td><td>Closer</td><td>Fornecer base para decisão</td></tr>
+      <tr><td>Entrevista com gestores</td><td>Presencial/vídeo</td><td>Sayonara + Emerson</td><td>Validar perfil final</td></tr>
+      <tr><td>Assinatura do contrato</td><td>Formal</td><td>Sayonara</td><td>Fechamento</td></tr>
+      <tr><td>Mentoria de implantação</td><td>Presencial</td><td>Sayonara (ou CS, H2+)</td><td>Suporte até abertura e estabilização</td></tr>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer style="padding:48px 0; text-align:center; border-top:1px solid var(--red-line);">
+  <div class="wrap">
+    <p style="font-size:13px; color:var(--gray-dim);">Scripts complementares ao documento "Estruturação Comercial — Gaafer Chocolates".<br>Recomenda-se testar e ajustar a linguagem com o time real após os primeiros contatos, mantendo o tom consultivo e transparente definido como diretriz de comunicação da marca.</p>
+    <p style="margin-top:16px; font-family:'Anton',sans-serif; letter-spacing:1px; color:var(--red); font-size:14px;">V4 COMPANY</p>
+  </div>
+</footer>
+
+</body>
+</html>
